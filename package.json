@@ -4,16 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon --inspect=0.0.0.0:9229 src/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kbanach/clean-api.git"
   },
-  "author": "",
+  "author": "Krystian Banach",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kbanach/clean-api/issues"
   },
-  "homepage": "https://github.com/kbanach/clean-api#readme"
+  "homepage": "https://github.com/kbanach/clean-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "joi": "^13.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
 }
