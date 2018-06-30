@@ -54,6 +54,7 @@ class ExpressHandler {
                 const output = method.call({ params, query, body });;
                 res.status(200).json(output);
             } catch (err) {
+                logger.debug('Error occured: ', require('util').inspect(err, null, 10));
                 res.status(500).json({ error: err.message });
             }
         });
