@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const logger = require('winston-color');
 
 const MethodWrapper = require('./method-wrapper');
 
@@ -16,6 +17,8 @@ class ExpressHandler {
 
             res.status(200).json(output);
         });
+
+        logger.debug(`Registered GET endpoint: \t${routePath}`);
     }
 
     addPost(
@@ -47,10 +50,15 @@ class ExpressHandler {
 
         this.app.post(routePath, (req, res) => {
             const { params, query, body } = req;
-            const output = method.call({ params, query, body });;
-
-            res.status(200).json(output);
+            try {
+                const output = method.call({ params, query, body });;
+                res.status(200).json(output);
+            } catch (err) {
+                res.status(500).json({ error: err.message });
+            }
         });
+
+        logger.debug(`Registered POST endpoint: \t${routePath}`);
     }
 }
 

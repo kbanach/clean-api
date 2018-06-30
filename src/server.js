@@ -9,13 +9,12 @@ const app = express();
 function errorHandler(err, req, res, next) {
     // TODO: validation errors registered in express-handler are not cought here
 
-
     if (res.headersSent) {
         return next(err)
     }
 
     res.status(500)
-    res.render('error', { error: err })
+    res.json({ error: err.message })
 }
 
 
